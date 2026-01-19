@@ -102,6 +102,7 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(new_product.category, product.category)
 
     def test_read_a_product(self):
+        """test_read_a_product"""
         product = ProductFactory()
         product.id = None
         product.create()
@@ -113,6 +114,7 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(found_product.price, product.price)
 
     def test_update_a_product(self):
+        """test_update_a_product"""
         product = ProductFactory()
         product.id = None
         product.create()
@@ -128,6 +130,7 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(products[0].description, "testing")
 
     def test_delete_a_product(self):
+        """test_delete_a_product"""
         product = ProductFactory()
         product.create()
         self.assertEqual(len(Product.all()), 1)
@@ -135,6 +138,7 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(len(Product.all()), 0)
 
     def test_list_all_products(self):
+        """test_list_all_products"""
         products = Product.all()
         self.assertEqual(products, [])
         for _ in range(5):
@@ -144,6 +148,7 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(len(products), 5)
 
     def test_find_by_name(self):
+        """test_find_by_name"""
         products = ProductFactory.create_batch(5)
         for product in products:
             product.create()
@@ -155,6 +160,7 @@ class TestProductModel(unittest.TestCase):
             self.assertEqual(product.name, name)
 
     def test_find_by_availability(self):
+        """test_find_by_availability"""
         products = ProductFactory.create_batch(10)
         for product in products:
             product.create()
@@ -166,6 +172,7 @@ class TestProductModel(unittest.TestCase):
             self.assertEqual(product.available, available)
 
     def test_find_by_category(self):
+        """test_find_by_category"""
         products = ProductFactory.create_batch(10)
         for product in products:
             product.create()

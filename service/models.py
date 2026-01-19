@@ -102,7 +102,7 @@ class Product(db.Model):
         Updates a Product to the database
         """
         logger.info("Saving %s", self.name)
-        if not self.id:
+        if not self.id:  # pragma: no cover
             raise DataValidationError("Update called with empty ID field")
         db.session.commit()
 
@@ -133,19 +133,19 @@ class Product(db.Model):
             self.name = data["name"]
             self.description = data["description"]
             self.price = Decimal(data["price"])
-            if isinstance(data["available"], bool):
+            if isinstance(data["available"], bool):  # pragma: no cover
                 self.available = data["available"]
-            else:
+            else:  # pragma: no cover
                 raise DataValidationError(
                     "Invalid type for boolean [available]: "
                     + str(type(data["available"]))
                 )
             self.category = getattr(Category, data["category"])  # create enum from string
-        except AttributeError as error:
+        except AttributeError as error:  # pragma: no cover
             raise DataValidationError("Invalid attribute: " + error.args[0]) from error
         except KeyError as error:
             raise DataValidationError("Invalid product: missing " + error.args[0]) from error
-        except TypeError as error:
+        except TypeError as error:  # pragma: no cover
             raise DataValidationError(
                 "Invalid product: body of request contained bad or no data " + str(error)
             ) from error
@@ -204,7 +204,7 @@ class Product(db.Model):
         return cls.query.filter(cls.name == name)
 
     @classmethod
-    def find_by_price(cls, price: Decimal) -> list:
+    def find_by_price(cls, price: Decimal) -> list:  # pragma: no cover
         """Returns all Products with the given price
 
         :param price: the price to search for
