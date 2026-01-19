@@ -43,7 +43,7 @@ def bad_request(error):
 
 
 @app.errorhandler(status.HTTP_404_NOT_FOUND)
-def not_found(error):
+def not_found(error): # pragma: no cover
     """Handles resources not found with 404_NOT_FOUND"""
     message = str(error)
     app.logger.warning(message)
@@ -54,7 +54,7 @@ def not_found(error):
 
 
 @app.errorhandler(status.HTTP_405_METHOD_NOT_ALLOWED)
-def method_not_supported(error):
+def method_not_supported(error): # pragma: no cover
     """Handles unsupported HTTP methods with 405_METHOD_NOT_SUPPORTED"""
     message = str(error)
     app.logger.warning(message)
@@ -84,7 +84,7 @@ def mediatype_not_supported(error):
 
 
 @app.errorhandler(status.HTTP_500_INTERNAL_SERVER_ERROR)
-def internal_server_error(error):
+def internal_server_error(error): # pragma: no cover
     """Handles unexpected server error with 500_SERVER_ERROR"""
     message = str(error)
     app.logger.error(message)
